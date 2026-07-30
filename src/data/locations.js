@@ -1,10 +1,10 @@
 const locations = [
   {
     slug: 'eyespecs-cbd',
-    name: 'Eyespecs Optometry',
+    name: 'Eyespecs Optometry — Diane Tu Khanh Nguyen Optometrist',
     tagline: 'Eye Care & Eyewear Clinic',
     phone: '(02) 9725 6635',
-    email: 'info@eyespecs.example',
+    email: 'admin@eyespecs.com.au',
     address: '10 Arthur St, Cabramatta NSW 2166',
     hours: [
       { day: 'Monday', time: '9:30 am - 5:15 pm' },
