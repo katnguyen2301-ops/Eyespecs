@@ -1,27 +1,42 @@
+$ cat << 'ENDOFFILE'
 const locations = [
   {
     slug: 'eyespecs-cbd',
     name: 'Eyespecs Optometry',
     tagline: 'Eye Care & Eyewear Clinic',
-    phone: '(00) 0000 0000',
+    phone: '(02) 9725 6635',
     email: 'info@eyespecs.example',
-    address: '[Street Address], [Suburb] [State] [Postcode]',
+    address: '10 Arthur St, Cabramatta NSW 2166',
     hours: [
-      { day: 'Mon - Fri', time: '9:00 am - 5:30 pm' },
-      { day: 'Saturday', time: '9:00 am - 1:00 pm' },
+      { day: 'Monday', time: '9:30 am - 5:15 pm' },
+      { day: 'Tuesday', time: '9:30 am - 5:15 pm' },
+      { day: 'Wednesday', time: '10:00 am - 2:00 pm' },
+      { day: 'Thursday', time: '9:30 am - 5:15 pm' },
+      { day: 'Friday', time: '9:30 am - 5:15 pm' },
+      { day: 'Saturday', time: '9:45 am - 4:00 pm' },
       { day: 'Sunday', time: 'Closed' },
     ],
   },
+]
+
+export default locations
+ENDOFFILE
+
+const locations = [
   {
-    slug: 'eyespecs-northside',
-    name: 'Eyespecs Northside',
+    slug: 'eyespecs-cbd',
+    name: 'Eyespecs Optometry',
     tagline: 'Eye Care & Eyewear Clinic',
-    phone: '(00) 0000 0001',
-    email: 'northside@eyespecs.example',
-    address: '[Street Address], [Suburb] [State] [Postcode]',
+    phone: '(02) 9725 6635',
+    email: 'info@eyespecs.example',
+    address: '10 Arthur St, Cabramatta NSW 2166',
     hours: [
-      { day: 'Mon - Fri', time: '9:00 am - 5:00 pm' },
-      { day: 'Saturday', time: 'Appointment Only' },
+      { day: 'Monday', time: '9:30 am - 5:15 pm' },
+      { day: 'Tuesday', time: '9:30 am - 5:15 pm' },
+      { day: 'Wednesday', time: '10:00 am - 2:00 pm' },
+      { day: 'Thursday', time: '9:30 am - 5:15 pm' },
+      { day: 'Friday', time: '9:30 am - 5:15 pm' },
+      { day: 'Saturday', time: '9:45 am - 4:00 pm' },
       { day: 'Sunday', time: 'Closed' },
     ],
   },
