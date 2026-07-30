@@ -89,10 +89,11 @@ body {
   color: #7a4a26;
 }
 
-.navbar-brand-mark svg {
-  width: 30px;
-  height: 30px;
+.navbar-brand-logo {
+  width: 32px;
+  height: 32px;
   flex-shrink: 0;
+  object-fit: contain;
 }
 
 .navbar-brand-text {
