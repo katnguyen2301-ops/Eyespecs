@@ -4,6 +4,7 @@ import NavDropdown from './NavDropdown'
 import services from './data/services'
 import aboutPages from './data/about'
 import locations from './data/locations'
+import logo from './assets/logo.png'
 
 function Navbar() {
   const practice = locations.find((location) => location.slug === 'eyespecs-cbd')
@@ -13,13 +14,7 @@ function Navbar() {
     <nav className="navbar">
       <Link to="/" className="navbar-brand" onClick={() => setMenuOpen(false)}>
         <span className="navbar-brand-mark">
-          <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-            <circle cx="13" cy="26" r="9" />
-            <circle cx="35" cy="26" r="9" />
-            <path d="M22 24h4" />
-            <path d="M4 22c0-6 2-11 5-11" />
-            <path d="M44 22c0-6-2-11-5-11" />
-          </svg>
+          <img src={logo} alt="" className="navbar-brand-logo" aria-hidden="true" />
           <span className="navbar-brand-text">Eyespecs</span>
         </span>
       </Link>
