@@ -1,7 +1,21 @@
 import macutecImg from './assets/macutec.webp'
 import lacritecImg from './assets/lacritec.jpg'
+import pradaImg from './assets/prada.jpg'
+import armaniImg from './assets/armani.jpeg'
+import orotonImg from './assets/oroton.webp'
+import gucciImg from './assets/gucci.webp'
+import raybanImg from './assets/rayban.webp'
+import mauijimImg from './assets/mauijim.webp'
 
-const eyewearBrands = ['Prada', 'Armani', 'Guess', 'Oroton', 'Gucci']
+const eyewearBrands = [
+  { name: 'Prada', image: pradaImg },
+  { name: 'Armani', image: armaniImg },
+  { name: 'Guess', image: null },
+  { name: 'Oroton', image: orotonImg },
+  { name: 'Gucci', image: gucciImg },
+  { name: 'Ray-Ban', image: raybanImg },
+  { name: 'Maui Jim', image: mauijimImg },
+]
 
 const vitaminBrands = [
   {
@@ -27,12 +41,20 @@ function BrandsWeStock() {
 
       <div className="brands-group">
         <h3>Eyewear & Sunglasses</h3>
-        <ul className="brands-list">
+        <div className="brands-logo-grid">
           {eyewearBrands.map((brand) => (
-            <li key={brand}>{brand}</li>
+            <div key={brand.name} className="brands-logo-card">
+              {brand.image ? (
+                <img className="brands-logo-photo" src={brand.image} alt={brand.name} />
+              ) : (
+                <span className="brands-logo-name">{brand.name}</span>
+              )}
+            </div>
           ))}
-          <li className="brands-list-placeholder">More brands coming soon</li>
-        </ul>
+          <div className="brands-logo-card brands-logo-card-placeholder">
+            <span>More brands coming soon</span>
+          </div>
+        </div>
       </div>
 
       <div className="brands-group">
