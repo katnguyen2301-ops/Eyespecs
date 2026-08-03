@@ -15,7 +15,7 @@ function Navbar() {
       <Link to="/" className="navbar-brand" onClick={() => setMenuOpen(false)}>
         <span className="navbar-brand-mark">
           <img src={logo} alt="" className="navbar-brand-logo" aria-hidden="true" />
-          <span className="navbar-brand-text">Eyespecs</span>
+          <span className="navbar-brand-text">EyeSpecs</span>
         </span>
       </Link>
 
