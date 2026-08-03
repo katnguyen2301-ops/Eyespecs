@@ -1,4 +1,4 @@
-import macutecImg from './assets/macutec.jpg'
+import macutecImg from './assets/macutec.webp'
 import lacritecImg from './assets/lacritec.jpg'
 
 const eyewearBrands = ['Prada', 'Armani', 'Guess', 'Oroton', 'Gucci']
