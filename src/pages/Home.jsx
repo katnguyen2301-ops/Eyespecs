@@ -2,7 +2,6 @@ import ServicesCarousel from '../ServicesCarousel'
 import TeamCarousel from '../TeamCarousel'
 import HomeFaq from '../HomeFaq'
 import HealthFundsBanner from '../HealthFundsBanner'
-import BrandsWeStock from '../BrandsWeStock'
 
 function Home() {
   return (
@@ -21,7 +20,6 @@ function Home() {
         <ServicesCarousel />
         <HealthFundsBanner />
       </div>
-      <BrandsWeStock />
       <TeamCarousel />
       <HomeFaq />
     </>
