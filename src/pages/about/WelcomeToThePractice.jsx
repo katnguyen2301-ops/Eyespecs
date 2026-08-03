@@ -3,7 +3,7 @@ function WelcomeToThePractice() {
     <section className="about-page">
       <h1>Welcome to Eyespecs</h1>
       <p>
-        Thank you for considering Eyespecs for your family's eye care. We're
+        Thank you for considering EyeSpecs for your family's eye care. We're
         a local practice, and we take pride in offering a warm, welcoming
         environment for every patient who walks through our doors.
       </p>
