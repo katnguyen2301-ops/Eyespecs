@@ -36,6 +36,7 @@ function Navbar() {
           <li><NavLink to="/" end onClick={() => setMenuOpen(false)}>Home</NavLink></li>
           <NavDropdown label="About" basePath="/about" items={aboutPages} onNavigate={() => setMenuOpen(false)} />
           <NavDropdown label="Services" basePath="/services" items={services} onNavigate={() => setMenuOpen(false)} />
+          <li><NavLink to="/brands" onClick={() => setMenuOpen(false)}>Brands We Stock</NavLink></li>
           <li><NavLink to="/contact" onClick={() => setMenuOpen(false)}>Contact</NavLink></li>
         </ul>
         <div className="navbar-actions">
