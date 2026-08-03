@@ -1,8 +1,19 @@
+import macutecImg from './assets/macutec.jpg'
+import lacritecImg from './assets/lacritec.jpg'
+
 const eyewearBrands = ['Prada', 'Armani', 'Guess', 'Oroton', 'Gucci']
 
 const vitaminBrands = [
-  { name: 'Macutec', note: 'A vitamin formulated to support macular health' },
-  { name: 'Lacritex', note: 'An omega-3 supplement formulated to support dry eye comfort' },
+  {
+    name: 'Macutec',
+    image: macutecImg,
+    note: 'A once-daily supplement that supports macular health.',
+  },
+  {
+    name: 'Lacritec',
+    image: lacritecImg,
+    note: 'A dietary supplement for relief from dry eyes, supporting the production of tear film.',
+  },
 ]
 
 function BrandsWeStock() {
@@ -31,17 +42,22 @@ function BrandsWeStock() {
           supplements. Our optometrist can advise whether one of these may
           be suitable for you as part of your eye exam.
         </p>
-        <ul className="brands-vitamin-list">
+        <div className="brands-vitamin-grid">
           {vitaminBrands.map((brand) => (
-            <li key={brand.name}>
-              <strong>{brand.name}</strong> — {brand.note}
-            </li>
+            <div key={brand.name} className="brands-vitamin-card">
+              <img className="brands-vitamin-photo" src={brand.image} alt={brand.name} />
+              <h4>{brand.name}</h4>
+              <p>{brand.note}</p>
+            </div>
           ))}
-          <li className="brands-list-placeholder">More brands coming soon</li>
-        </ul>
+          <div className="brands-vitamin-card brands-vitamin-card-placeholder">
+            <span>More brands coming soon</span>
+          </div>
+        </div>
       </div>
     </section>
   )
 }
 
 export default BrandsWeStock
+
