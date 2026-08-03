@@ -16,9 +16,14 @@ function Contact() {
       <div className="location-list">
         {locations.map((location) => (
           <article key={location.slug} className="location-list-card">
-            <div className="location-list-photo-placeholder" aria-hidden="true">
-              Photo placeholder
-            </div>
+            <iframe
+              className="location-list-photo"
+              src={`https://www.google.com/maps?q=${encodeURIComponent(location.address)}&layer=c&output=svembed`}
+              title={`Street view of ${location.name}`}
+              loading="lazy"
+              referrerPolicy="strict-origin-when-cross-origin"
+              allowFullScreen
+            />
             <div className="location-list-body">
               <h2>{location.name}</h2>
               <p>{location.address}</p>
