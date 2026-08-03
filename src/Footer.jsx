@@ -4,7 +4,7 @@ import locations from './data/locations'
 import SocialLinks from './SocialLinks'
 import imageCredits from './data/imageCredits'
 
-const areas = ['[Suburb One]', '[Suburb Two]', '[Suburb Three]', '[Suburb Four]']
+const areas = ['Cabramatta', 'Canley Heights', 'Fairfield', 'Canley Vale', 'Lansvale']
 
 const midpoint = Math.ceil(services.length / 2)
 const servicesColumnOne = services.slice(0, midpoint)
@@ -74,7 +74,7 @@ function Footer() {
       </ul>
 
       <div className="footer-bottom">
-        <span>All Rights Reserved by Eyespecs</span>
+        <span>All Rights Reserved by EyeSpecs</span>
         <SocialLinks className="footer-social-links" />
       </div>
 
