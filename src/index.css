@@ -1043,7 +1043,10 @@ body {
 .home-hero-media {
   position: absolute;
   inset: 0;
-  background: linear-gradient(160deg, #d9b98a, #8a5a2b);
+  background-color: #8a5a2b;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 .home-hero-overlay {
