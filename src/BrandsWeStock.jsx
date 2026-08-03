@@ -8,7 +8,7 @@ const vitaminBrands = [
 function BrandsWeStock() {
   return (
     <section className="brands-section">
-      <h2>Brands We Stock</h2>
+      <h1>Brands We Stock</h1>
       <p className="brands-section-subtitle">
         We carry a range of trusted eyewear and eye health brands, with new
         options added regularly.
