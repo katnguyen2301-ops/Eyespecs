@@ -2,13 +2,18 @@ import ServicesCarousel from '../ServicesCarousel'
 import TeamCarousel from '../TeamCarousel'
 import HomeFaq from '../HomeFaq'
 import HealthFundsBanner from '../HealthFundsBanner'
+import heroBackground from '../assets/hero.jpg'
 
 function Home() {
   return (
     <>
       <div className="home-hero-spacer">
         <section className="home-hero">
-          <div className="home-hero-media" aria-hidden="true" />
+          <div
+            className="home-hero-media"
+            style={{ backgroundImage: `url(${heroBackground})` }}
+            aria-hidden="true"
+          />
           <div className="home-hero-overlay" aria-hidden="true" />
           <div className="home-hero-content">
             <h1>Exceptional Eye Care for Every Vision</h1>
@@ -27,3 +32,4 @@ function Home() {
 }
 
 export default Home
+
