@@ -1,7 +1,7 @@
 const locations = [
   {
     slug: 'eyespecs-cbd',
-    name: 'Eyespecs Optometry — Diane Tu Khanh Nguyen Optometrist',
+    name: 'EyeSpecs Optometry — Diane Tu Khanh Nguyen Optometrist',
     tagline: 'Eye Care & Eyewear Clinic',
     phone: '(02) 9725 6635',
     email: 'admin@eyespecs.com.au',
