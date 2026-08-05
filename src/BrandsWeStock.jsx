@@ -6,11 +6,12 @@ import orotonImg from './assets/oroton.webp'
 import gucciImg from './assets/gucci.webp'
 import raybanImg from './assets/rayban.webp'
 import mauijimImg from './assets/mauijim.webp'
+import guessImg from './assets/guess.jpg'
 
 const eyewearBrands = [
   { name: 'Prada', image: pradaImg },
   { name: 'Armani', image: armaniImg },
-  { name: 'Guess', image: null },
+  { name: 'Guess', image: guessImg },
   { name: 'Oroton', image: orotonImg },
   { name: 'Gucci', image: gucciImg },
   { name: 'Ray-Ban', image: raybanImg },
@@ -82,4 +83,3 @@ function BrandsWeStock() {
 }
 
 export default BrandsWeStock
-
