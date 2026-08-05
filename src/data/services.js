@@ -10,6 +10,11 @@ const services = [
     blurb: 'Gentle vision testing to help kids see clearly and comfortably from an early age.',
   },
   {
+    path: 'ortho-k-contact-lenses',
+    label: 'Ortho-K Contact Lenses',
+    blurb: 'Overnight lenses that gently reshape your cornea for clear vision during the day, without glasses or contacts.',
+  },
+  {
     path: 'contact-lens-fittings',
     label: 'Contact Lens Fittings',
     blurb: 'Finding the right contact lens type and fit for your eyes and lifestyle.',
