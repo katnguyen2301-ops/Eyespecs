@@ -1,6 +1,7 @@
 import { Navigate, Outlet, Route, Routes, useLocation } from 'react-router-dom'
 import ComprehensiveEyeExams from './services/ComprehensiveEyeExams'
 import ChildrensEyeCare from './services/ChildrensEyeCare'
+import OrthoKContactLenses from './services/OrthoKContactLenses'
 import ContactLensFittings from './services/ContactLensFittings'
 import PrescriptionEyewear from './services/PrescriptionEyewear'
 import GlaucomaScreening from './services/GlaucomaScreening'
@@ -45,6 +46,10 @@ function Services() {
           <Route
             path="childrens-eye-care"
             element={<ChildrensEyeCare />}
+          />
+          <Route
+            path="ortho-k-contact-lenses"
+            element={<OrthoKContactLenses />}
           />
           <Route
             path="contact-lens-fittings"
