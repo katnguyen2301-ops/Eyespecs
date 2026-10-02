@@ -65,6 +65,61 @@ body {
   margin: 0;
 }
 
+.closure-notice-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background: rgba(40, 26, 12, 0.55);
+}
+
+.closure-notice {
+  position: relative;
+  width: 100%;
+  max-width: 440px;
+  padding: 40px 32px 32px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  box-shadow: var(--shadow);
+  text-align: center;
+}
+
+.closure-notice h2 {
+  font-size: 24px;
+  margin: 0 0 16px;
+}
+
+.closure-notice p {
+  margin: 0 0 24px;
+  color: var(--text);
+}
+
+.closure-notice-close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 32px;
+  height: 32px;
+  border: none;
+  background: none;
+  font-size: 22px;
+  line-height: 1;
+  color: var(--text);
+  cursor: pointer;
+}
+
+.closure-notice-close:hover {
+  color: var(--text-h);
+}
+
+.closure-notice-dismiss {
+  border: none;
+}
+
 .navbar {
   position: relative;
   z-index: 100;
