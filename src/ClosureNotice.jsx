@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 
 const DISMISS_KEY = 'closure-notice-2026-10-03'
-const EXPIRES_AT = new Date('2026-10-08T00:00:00')
+const EXPIRES_AT = new Date('2026-10-07T00:00:00')
 
 function ClosureNotice() {
   const [open, setOpen] = useState(false)
