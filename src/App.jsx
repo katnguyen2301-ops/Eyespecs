@@ -1,7 +1,6 @@
 import { Route, Routes } from 'react-router-dom'
 import Navbar from './Navbar'
 import Footer from './Footer'
-import PromoBanner from './PromoBanner'
 import ClosureNotice from './ClosureNotice'
 import ScrollToTop from './ScrollToTop'
 import Home from './pages/Home'
@@ -15,7 +14,6 @@ function App() {
     <>
       <ScrollToTop />
       <ClosureNotice />
-      <PromoBanner />
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
