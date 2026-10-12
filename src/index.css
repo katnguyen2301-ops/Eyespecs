@@ -750,6 +750,21 @@ body {
   font-weight: 500;
 }
 
+.book-appointment-error {
+  padding: 12px 16px;
+  margin-bottom: 24px;
+  background: #fdeceb;
+  border: 1px solid #e8a9a2;
+  border-radius: 8px;
+  color: #8a2f27;
+  font-weight: 500;
+}
+
+.book-appointment-error a {
+  color: inherit;
+  text-decoration: underline;
+}
+
 .book-slots {
   display: flex;
   flex-direction: column;

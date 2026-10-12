@@ -54,7 +54,7 @@ function BookAppointment() {
     service: services[0].path,
     notes: '',
   })
-  const [submitted, setSubmitted] = useState(false)
+  const [status, setStatus] = useState('idle')
 
   function handleFieldChange(event) {
     const { name, value } = event.target
@@ -70,36 +70,42 @@ function BookAppointment() {
     setForm((prev) => ({ ...prev, time: slot }))
   }
 
-  function handleSubmit(event) {
+  async function handleSubmit(event) {
     event.preventDefault()
-    if (!form.time) return
+    if (!form.time || status === 'sending') return
 
     const serviceLabel = services.find((entry) => entry.path === form.service)?.label
 
-    const subject = `Appointment request from ${form.firstName} ${form.lastName}`.trim()
-    const bodyLines = [
-      `Name: ${form.firstName} ${form.lastName}`.trim(),
-      `Date of birth: ${form.dateOfBirth}`,
-      `Email: ${form.email}`,
-      `Phone: ${form.phone}`,
-      `Requested date: ${form.date}`,
-      `Requested time: ${form.time}`,
-      `Reason for visit: ${serviceLabel}`,
-      form.notes && '',
-      form.notes && `Additional notes: ${form.notes}`,
-    ].filter(Boolean)
+    setStatus('sending')
 
-    const mailtoUrl = `mailto:${practice.email}?subject=${encodeURIComponent(
-      subject,
-    )}&body=${encodeURIComponent(bodyLines.join('\n'))}`
+    try {
+      const response = await fetch('/api/book-appointment', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          firstName: form.firstName,
+          lastName: form.lastName,
+          dateOfBirth: form.dateOfBirth,
+          email: form.email,
+          phone: form.phone,
+          date: form.date,
+          time: form.time,
+          service: serviceLabel,
+          notes: form.notes,
+        }),
+      })
 
-    window.location.href = mailtoUrl
-    setSubmitted(true)
+      if (!response.ok) throw new Error('Request failed')
+
+      setStatus('success')
+    } catch {
+      setStatus('error')
+    }
   }
 
   const today = new Date().toISOString().split('T')[0]
   const slots = getSlotsForDate(form.date)
-  const canSubmit = form.date && form.time
+  const canSubmit = form.date && form.time && status !== 'sending'
 
   return (
     <section className="get-in-touch">
@@ -108,10 +114,18 @@ function BookAppointment() {
         Our team will confirm your appointment by phone or email.
       </p>
 
-      {submitted && (
+      {status === 'success' && (
         <p className="book-appointment-confirmation">
-          Thanks! Your email app should now be open with your request ready
-          to send — just hit send and we'll be in touch to confirm.
+          Thanks! Your appointment request has been sent — we'll be in touch
+          to confirm.
+        </p>
+      )}
+
+      {status === 'error' && (
+        <p className="book-appointment-error">
+          Something went wrong sending your request. Please call us on{' '}
+          <a href={`tel:${practice.phone.replace(/\s+/g, '')}`}>{practice.phone}</a> or
+          email <a href={`mailto:${practice.email}`}>{practice.email}</a> directly.
         </p>
       )}
 
@@ -231,7 +245,7 @@ function BookAppointment() {
         </label>
 
         <button type="submit" className="get-in-touch-submit" disabled={!canSubmit}>
-          Request Appointment
+          {status === 'sending' ? 'Sending…' : 'Request Appointment'}
         </button>
       </form>
     </section>
