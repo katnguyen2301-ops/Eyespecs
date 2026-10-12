@@ -105,9 +105,7 @@ function BookAppointment() {
     <section className="get-in-touch">
       <h1>Book an Appointment</h1>
       <p>
-        Choose a date and time below and our team will confirm your
-        appointment by phone or email. This sends us a request rather than
-        an instant confirmation — we'll be in touch to lock it in.
+        Our team will confirm your appointment by phone or email.
       </p>
 
       {submitted && (
