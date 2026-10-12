@@ -46,6 +46,7 @@ function BookAppointment() {
   const [form, setForm] = useState({
     firstName: '',
     lastName: '',
+    dateOfBirth: '',
     email: '',
     phone: '',
     date: '',
@@ -78,6 +79,7 @@ function BookAppointment() {
     const subject = `Appointment request from ${form.firstName} ${form.lastName}`.trim()
     const bodyLines = [
       `Name: ${form.firstName} ${form.lastName}`.trim(),
+      `Date of birth: ${form.dateOfBirth}`,
       `Email: ${form.email}`,
       `Phone: ${form.phone}`,
       `Requested date: ${form.date}`,
@@ -138,6 +140,18 @@ function BookAppointment() {
             />
           </label>
         </div>
+
+        <label className="get-in-touch-field">
+          Date of Birth
+          <input
+            type="date"
+            name="dateOfBirth"
+            max={today}
+            value={form.dateOfBirth}
+            onChange={handleFieldChange}
+            required
+          />
+        </label>
 
         <div className="get-in-touch-row">
           <label className="get-in-touch-field">
