@@ -43,13 +43,13 @@ function Navbar() {
           <a className="btn btn-call" href={`tel:${practice.phone.replace(/\s+/g, '')}`}>
             Call Now
           </a>
-          <a
+          <Link
             className="btn btn-book"
-            href={`mailto:${practice.email}`}
+            to="/book"
             onClick={() => setMenuOpen(false)}
           >
             Book Appointment
-          </a>
+          </Link>
         </div>
       </div>
     </nav>

@@ -2,12 +2,10 @@ import { useRef } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import services from './data/services'
 import serviceImages from './data/serviceImages'
-import locations from './data/locations'
 
 function ServicesCarousel() {
   const trackRef = useRef(null)
   const navigate = useNavigate()
-  const practice = locations.find((location) => location.slug === 'eyespecs-cbd')
 
   function scrollByCard(direction) {
     const track = trackRef.current
@@ -78,12 +76,9 @@ function ServicesCarousel() {
         </button>
       </div>
 
-      <a
-        href={`mailto:${practice.email}`}
-        className="btn btn-book services-carousel-cta"
-      >
+      <Link to="/book" className="btn btn-book services-carousel-cta">
         Book Appointment
-      </a>
+      </Link>
     </section>
   )
 }

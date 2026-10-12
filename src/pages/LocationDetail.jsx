@@ -1,4 +1,4 @@
-import { Navigate, useParams } from 'react-router-dom'
+import { Link, Navigate, useParams } from 'react-router-dom'
 import locations from '../data/locations'
 
 function LocationDetail() {
@@ -25,9 +25,9 @@ function LocationDetail() {
           <a href={`tel:${location.phone.replace(/\s+/g, '')}`} className="btn btn-outline-light">
             {location.phone}
           </a>
-          <a href={`mailto:${location.email}`} className="btn btn-book">
+          <Link to="/book" className="btn btn-book">
             Book a consultation
-          </a>
+          </Link>
         </div>
       </div>
 

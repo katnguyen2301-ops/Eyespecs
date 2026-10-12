@@ -1,0 +1,229 @@
+import { useState } from 'react'
+import locations from '../data/locations'
+import services from '../data/services'
+
+const practice = locations.find((location) => location.slug === 'eyespecs-cbd')
+
+function parseTimeToMinutes(value) {
+  const match = value.trim().match(/(\d+):(\d+)\s*(am|pm)/i)
+  if (!match) return null
+  let hours = parseInt(match[1], 10)
+  const minutes = parseInt(match[2], 10)
+  const period = match[3].toLowerCase()
+  if (period === 'pm' && hours !== 12) hours += 12
+  if (period === 'am' && hours === 12) hours = 0
+  return hours * 60 + minutes
+}
+
+function minutesToLabel(totalMinutes) {
+  let hours = Math.floor(totalMinutes / 60)
+  const minutes = totalMinutes % 60
+  const period = hours >= 12 ? 'PM' : 'AM'
+  hours = hours % 12 || 12
+  return `${hours}:${minutes.toString().padStart(2, '0')} ${period}`
+}
+
+function getSlotsForDate(dateValue) {
+  if (!dateValue) return []
+  const date = new Date(`${dateValue}T00:00:00`)
+  const dayName = date.toLocaleDateString('en-AU', { weekday: 'long' })
+  const entry = practice.hours.find((hours) => hours.day === dayName)
+  if (!entry || entry.time.toLowerCase() === 'closed') return []
+
+  const [startText, endText] = entry.time.split('-')
+  const start = parseTimeToMinutes(startText)
+  const end = parseTimeToMinutes(endText)
+  if (start == null || end == null) return []
+
+  const slots = []
+  for (let t = start; t + 30 <= end; t += 30) {
+    slots.push(minutesToLabel(t))
+  }
+  return slots
+}
+
+function BookAppointment() {
+  const [form, setForm] = useState({
+    firstName: '',
+    lastName: '',
+    email: '',
+    phone: '',
+    date: '',
+    time: '',
+    service: services[0].path,
+    notes: '',
+  })
+  const [submitted, setSubmitted] = useState(false)
+
+  function handleFieldChange(event) {
+    const { name, value } = event.target
+    setForm((prev) => ({ ...prev, [name]: value }))
+  }
+
+  function handleDateChange(event) {
+    const { value } = event.target
+    setForm((prev) => ({ ...prev, date: value, time: '' }))
+  }
+
+  function handleTimeSelect(slot) {
+    setForm((prev) => ({ ...prev, time: slot }))
+  }
+
+  function handleSubmit(event) {
+    event.preventDefault()
+    if (!form.time) return
+
+    const serviceLabel = services.find((entry) => entry.path === form.service)?.label
+
+    const subject = `Appointment request from ${form.firstName} ${form.lastName}`.trim()
+    const bodyLines = [
+      `Name: ${form.firstName} ${form.lastName}`.trim(),
+      `Email: ${form.email}`,
+      `Phone: ${form.phone}`,
+      `Requested date: ${form.date}`,
+      `Requested time: ${form.time}`,
+      `Reason for visit: ${serviceLabel}`,
+      form.notes && '',
+      form.notes && `Additional notes: ${form.notes}`,
+    ].filter(Boolean)
+
+    const mailtoUrl = `mailto:${practice.email}?subject=${encodeURIComponent(
+      subject,
+    )}&body=${encodeURIComponent(bodyLines.join('\n'))}`
+
+    window.location.href = mailtoUrl
+    setSubmitted(true)
+  }
+
+  const today = new Date().toISOString().split('T')[0]
+  const slots = getSlotsForDate(form.date)
+  const canSubmit = form.date && form.time
+
+  return (
+    <section className="get-in-touch">
+      <h1>Book an Appointment</h1>
+      <p>
+        Choose a date and time below and our team will confirm your
+        appointment by phone or email. This sends us a request rather than
+        an instant confirmation — we'll be in touch to lock it in.
+      </p>
+
+      {submitted && (
+        <p className="book-appointment-confirmation">
+          Thanks! Your email app should now be open with your request ready
+          to send — just hit send and we'll be in touch to confirm.
+        </p>
+      )}
+
+      <form className="get-in-touch-form" onSubmit={handleSubmit}>
+        <div className="get-in-touch-row">
+          <label className="get-in-touch-field">
+            First Name
+            <input
+              type="text"
+              name="firstName"
+              value={form.firstName}
+              onChange={handleFieldChange}
+              required
+            />
+          </label>
+          <label className="get-in-touch-field">
+            Last Name
+            <input
+              type="text"
+              name="lastName"
+              value={form.lastName}
+              onChange={handleFieldChange}
+              required
+            />
+          </label>
+        </div>
+
+        <div className="get-in-touch-row">
+          <label className="get-in-touch-field">
+            Email
+            <input
+              type="email"
+              name="email"
+              value={form.email}
+              onChange={handleFieldChange}
+              required
+            />
+          </label>
+          <label className="get-in-touch-field">
+            Phone
+            <input
+              type="tel"
+              name="phone"
+              value={form.phone}
+              onChange={handleFieldChange}
+              required
+            />
+          </label>
+        </div>
+
+        <label className="get-in-touch-field">
+          Date
+          <input
+            type="date"
+            name="date"
+            min={today}
+            value={form.date}
+            onChange={handleDateChange}
+            required
+          />
+        </label>
+
+        <div className="book-slots">
+          <span className="book-slots-label">Time</span>
+          {!form.date && (
+            <p className="book-slots-empty">Choose a date to see available times.</p>
+          )}
+          {form.date && slots.length === 0 && (
+            <p className="book-slots-empty">
+              We're closed that day — please choose another date.
+            </p>
+          )}
+          {slots.length > 0 && (
+            <div className="book-slots-grid">
+              {slots.map((slot) => (
+                <button
+                  key={slot}
+                  type="button"
+                  className={
+                    slot === form.time ? 'book-slot-btn book-slot-btn-selected' : 'book-slot-btn'
+                  }
+                  onClick={() => handleTimeSelect(slot)}
+                >
+                  {slot}
+                </button>
+              ))}
+            </div>
+          )}
+        </div>
+
+        <label className="get-in-touch-field">
+          Reason for Visit
+          <select name="service" value={form.service} onChange={handleFieldChange}>
+            {services.map((service) => (
+              <option key={service.path} value={service.path}>
+                {service.label}
+              </option>
+            ))}
+          </select>
+        </label>
+
+        <label className="get-in-touch-field">
+          Additional Notes
+          <textarea name="notes" rows={4} value={form.notes} onChange={handleFieldChange} />
+        </label>
+
+        <button type="submit" className="get-in-touch-submit" disabled={!canSubmit}>
+          Request Appointment
+        </button>
+      </form>
+    </section>
+  )
+}
+
+export default BookAppointment

@@ -31,12 +31,9 @@ function Contact() {
                 <Link to={`/contact/${location.slug}`} className="btn btn-outline">
                   Find out more
                 </Link>
-                <a
-                  className="btn btn-book"
-                  href={`tel:${location.phone.replace(/\s+/g, '')}`}
-                >
+                <Link to="/book" className="btn btn-book">
                   Book Online →
-                </a>
+                </Link>
               </div>
             </div>
           </article>
